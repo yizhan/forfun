@@ -7,20 +7,17 @@
 
 // Target: angular directive?
 
-// TODO: use canvas only
+// TODO: add angular 
+var canvas = document.getElementById('#my-canvas');
+var context = canvas.getContext('2d');
 
-var img = document.getElementById('#my-image');
+var imageObj = new Image();
+imageObj.src = './color_wheel_730.png';
+imageObj.onload = function() {
+    context.drawImage(imageObj, 0, 0);
+};
 
-var canvas = document.createElement('canvas');
-
-console.log('img', img);
-console.log('canvas', canvas);
-canvas.width = img.width;
-canvas.height = img.height;
-canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
-//
-img.addEventListener('click', function(event) {
+canvas.addEventListener('click', function(event) {
     var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
     console.log('pixelData', pixelData);
 });
-
