@@ -1,2 +1,5 @@
 .idea/
 old/
+node_modules/
+
+gulpfile-old.js

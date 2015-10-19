@@ -1,0 +1,27 @@
+{
+  "name": "color-picker",
+  "version": "0.0.1",
+  "description": "a fun color picker in angular 1 ",
+  "main": "color-picker.js",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4",
+    "nedb": "^1.2.1",
+    "webpack": "^1.12.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yizhan/forfun.git"
+  },
+  "author": "robert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yizhan/forfun/issues"
+  },
+  "homepage": "https://github.com/yizhan/forfun#readme"
+}
