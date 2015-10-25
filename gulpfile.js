@@ -1,89 +1,57 @@
-'use strict';
 
-var express = require('express');
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var runSequence = require('run-sequence');
-var path = require('path');
-var app = express();
+var gulp = require("gulp");
+var gutil = require("gulp-util");
+var webpack = require("webpack");
+var WebpackDevServer = require("webpack-dev-server");
 
-var EXPRESS_ROOT = __dirname;
+gulp.task("webpack", function(callback) {
+    // run webpack
+    webpack({
+        // configuration
 
-gulp.task('dev', function () {
-  startLivereload();
-  runSequence(
-    'sass',
-    'sass:watch',
-    'run-server',
-    function (error) {
-      if (error) {
-        console.log(error.message);
-      } else {
-        console.log('run dev successfully');
-      }
-    }
-  );
+        context: APP,
+        entry: {
+            app: ['webpack/hot/dev-server','./index.js']
+        },
+        output: {
+            path: APP,
+            filename: 'bundle.js'
+        }
+
+    }, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
+    });
 });
 
-gulp.task('run-server', function () {
-  app.use("/css", express.static(path.resolve("css")));
-  app.use('/img', express.static(path.resolve("img")));
-  app.use('/js', express.static(path.resolve("js")));
-  app.use('/', express.static(path.resolve(EXPRESS_ROOT)));
+gulp.task("webpack-dev-server", function(callback) {
+    // Start a webpack-dev-server
 
-  app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/color-picker.html');
-  });
-
-  var server = app.listen(4000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log(' listening at', host, port);
-  });
-})
-
-// We'll need a reference to the tinylr
-// object to send notifications of file changes
-// further down
-var lr;
-function startLivereload() {
-  console.log('start live reload');
-    lr = require('tiny-lr')();
-    lr.listen(35729);
-}
-
-
-// gulp.task('livereload', function () {
-//   var tinylr = require('tiny-lr');
-//   var port = 35729;
-//   tinylr().listen(port, function () {
-//     console.log('... Listening on %s ...', port);
-//   });
-// })
-
-// Notifies livereload of changes detected
-// by `gulp.watch()`
-function notifyLivereload(event) {
-
-    // `gulp.watch()` events provide an absolute path
-    // so we need to make it relative to the server root
-    var fileName = require('path').relative(EXPRESS_ROOT, event.path);
-    console.log('in notifyLivereload', fileName);
-    lr.changed({
-        body: {
-            files: [fileName]
+    var APP = __dirname + '/app';
+    var compiler = webpack({
+        // configuration
+        context: APP,
+        entry: {
+            app: ['webpack/hot/dev-server', './index.js']
+        },
+        output: {
+            path: APP,
+            filename: 'bundle.js'
         }
     });
-}
 
-gulp.task('sass', function () {
-  gulp.src('./sass/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
-});
+    new WebpackDevServer(compiler, {
+        publicPath: APP
+        // server and middleware options
+    }).listen(8080, "localhost", function(err) {
+            if(err) throw new gutil.PluginError("webpack-dev-server", err);
+            // Server listening
+            gutil.log("[webpack/hot/dev-server]", "http://localhost:8080/webpack-dev-server/app/index.html");
 
-gulp.task('sass:watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
-  gulp.watch('./css/**/*.css', notifyLivereload);
+            // keep the server alive or continue?
+            // callback();
+        });
 });

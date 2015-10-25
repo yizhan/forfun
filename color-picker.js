@@ -17,20 +17,24 @@ imageObj.onload = function() {
     context.drawImage(imageObj, 0, 0);
 };
 
-canvas.addEventListener('click', function(event) {
-    var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
-    console.log('pixelData', pixelData);
-});
-
-var trackMouseMove = (Element) => {
+var trackMouseMove = function (Element) {
     // console.log('tracking mouse move', event);
     Element.addEventListener('mousemove', (event) => {
         let pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
         console.log('pixelData', pixelData);
-    })
+    });
+
+    return true;
 };
 
 var killTrackMouseMove = (event) => {
     console.log('kill tracking mouse move');
     event.removeEventListener('mousemove')
 };
+
+
+canvas.addEventListener('click', function(event) {
+    var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
+    console.log('pixelData', pixelData);
+    console.log(trackMouseMove);
+});
