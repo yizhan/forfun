@@ -2,29 +2,33 @@
 var webpack = require('webpack'),
     path = require('path');
 
-var APP = __dirname + '/app';
-
 // config
 module.exports = {
-    context: APP,
+    // context: APP,
     entry: {
-        app: ['webpack/hot/dev-server','./core/bootstrap.js']
+        index: ['webpack/hot/dev-server','./index.js'],
+        vendors: ["webpack/hot/dev-server", "angular-ui-router"]
     },
     output: {
-        path: APP,
-        filename: 'bundle.js'
+        path: __dirname + "/build",
+        filename: '[name].js'
     },
+    watch: true,
     module: {
         loaders: [
             {
                 test: /\.scss$/,
                 loaders: ["style", "css", "sass"]
             },
+            { test: /\.html$/, exclude: /node_modules/, loader: "html-loader" },
             {
                 test: /\.js$/,
                 loader: 'ng-annotate!babel!jshint',
                 exclude: /node_modules|bower_components/
             }
         ]
-    }
+    },
+    plugins: [
+          new webpack.HotModuleReplacementPlugin()
+    ]
 };

@@ -5,6 +5,7 @@
   "main": "color-picker.js",
   "dependencies": {
     "angular": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
     "gulp": "^3.9.0",
     "gulp-sass": "^2.0.4",
     "gulp-util": "^3.0.7",

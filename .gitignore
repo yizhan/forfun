@@ -4,3 +4,8 @@ node_modules/
 
 gulpfile-old.js
 css/
+index_files/
+app/bundle.js
+index.html
+
+npm-debug.log
