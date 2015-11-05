@@ -1,14 +1,17 @@
-require('color-picker-directive.scss');
+var module = require('../../module');
+
+require('./color-picker-directive.scss');
 
 module.directive('testDirective', function() {
     return {
-        template: require('color-picker-directive.html'),
+        template: require('./color-picker-directive.html'),
         link: function (scope, element) {
+            console.log('directive working');
             var canvas = document.getElementById('#my-canvas');
             var context = canvas.getContext('2d');
 
             var imageObj = new Image();
-            imageObj.src = './color_wheel_730.png';
+            imageObj.src = 'color_wheel_730.png';
             imageObj.onload = function() {
                 context.drawImage(imageObj, 0, 0);
             };

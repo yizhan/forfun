@@ -1,12 +1,40 @@
-.new-color {
-  color: red;
-}
-
 body {
-  background: #FDFDFD;
-  font-size: 20px;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  color: green;
+a {
+  color: inherit;
+  text-decoration: none;
 }
+
+.navBar {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+
+  .navBarItem {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      max-width: 1200px;
+      background: lavender;
+
+      ul {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 1.6em;
+        color: darkblue;
+      }
+  }
+}
+
+

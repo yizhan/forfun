@@ -6,7 +6,7 @@ var webpack = require('webpack'),
 module.exports = {
     // context: APP,
     entry: {
-        index: ['webpack/hot/dev-server','./index.js'],
+        index: ['webpack/hot/dev-server','./index.js', './sass/index.scss', './index.html'],
         vendors: ["webpack/hot/dev-server", "angular-ui-router"]
     },
     output: {

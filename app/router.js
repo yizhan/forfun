@@ -3,6 +3,7 @@ var module = require('./module');
 
 require('./states/home/HomeCtrl.js');
 require('./states/about/AboutCtrl.js');
+require('./states/color-picker/color-picker-directive.js');
 
 module.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/home");

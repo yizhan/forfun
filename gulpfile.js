@@ -28,7 +28,7 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task("webpack-dev-server", function(callback) {
+gulp.task("dev-webpack", function(callback) {
     // Start a webpack-dev-server
 
     // modify some webpack config options
