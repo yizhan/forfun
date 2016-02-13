@@ -1,0 +1,15 @@
+.ColorPicker {
+    min-height: 800px;
+}
+
+.ColorPicker-wheel {
+    border: 1px solid red;
+    border-radius: 50%;
+}
+
+.ColorPicker-selectedColor-preview {
+    display: block;
+    height: 40px;
+    width: 200px;
+    border: 1px dashed lightblue;
+}

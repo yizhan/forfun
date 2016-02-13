@@ -16,7 +16,7 @@ module.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('/about',{
             url:'/about',
-            templateUrl:'/app/states/about/AboutView.html',
+            template: require('./states/about/AboutView.html'),
             controller:'AboutCtrl'
         });
 });
