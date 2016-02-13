@@ -6,7 +6,7 @@ module.directive('testDirective', function() {
     return {
         template: require('./color-picker-directive.html'),
         link: function (scope, element) {
-            console.log('directive working');
+            
             var canvas = document.getElementById('#my-canvas');
             var context = canvas.getContext('2d');
 
@@ -26,7 +26,7 @@ module.directive('testDirective', function() {
             };
 
             scope.killTrackMouseMove = function(event) {
-                element[0].removeEventListener('mousemove')
+                element[0].removeEventListener('mousemove');
             };
 
             scope.getCanvasPixelData = function() {
