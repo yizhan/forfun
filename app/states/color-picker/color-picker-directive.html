@@ -1,11 +1,10 @@
 <div class="ColorPicker">
     <h2> this is a h2 changed </h2>
-    <canvas class="ColorPicker-wheel" id="#my-canvas" ng-mouseover="trackMouseOver($event)"
+    <canvas class="ColorPicker-wheel" id="#my-canvas"
             ng-mousemove="trackMouseMove($event)"
-        ng-mouseleave="killTrackMouseMove($event)"
-        ng-click="getCanvasPixelData()"
-        width="400"
-        height="400">
+            ng-click="getCanvasPixelData()"
+            width="400"
+            height="400">
     </canvas>
     <div class="ColorPicker-selectedColor">
         <p>{{hoverColor}}</p>
